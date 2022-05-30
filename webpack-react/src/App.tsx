@@ -5,6 +5,7 @@ import { Layout } from './shared/Layout/Layout';
 import { Header } from './shared/Header/Header';
 import { Content } from './shared/Content/Content';
 import { CardList } from './shared/CardList';
+// import { Dropdown } from './shared/Dropdown';
 
 function AppComponent() {
     return (
@@ -12,6 +13,9 @@ function AppComponent() {
             <Header />
             <Content>
                 <CardList />
+                {/* <Dropdown button={<button>Text</button>}>
+                    <CardList />
+                </Dropdown> */}
             </Content>
         </Layout>
     )
