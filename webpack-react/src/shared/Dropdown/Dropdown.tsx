@@ -20,7 +20,6 @@ export function Dropdown({button, children, isOpen, onOpen = NOOP, onClose = NOO
   }, [isOpen])
 
   React.useEffect(() => {
-    document.addEventListener('click', () => setIsDropdownOpen(!isDropdownOpen));
     isDropdownOpen ? onOpen() : onClose();
   }, [isDropdownOpen])
 
