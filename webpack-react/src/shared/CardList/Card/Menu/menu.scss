@@ -19,9 +19,6 @@
   }
   
   .dropdown {
-    position: absolute;
-    right: 0;
-    top: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border-radius: 3px;
     background-color: var(--white);
@@ -34,28 +31,13 @@
     width: 100%;
   }
 
-  .dropdownList {
-    width: fit-content;
-    background: var(--white);
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
-    border-radius: 3px;
-  }
-
-  .dropdownItem {
-    display: flex;
-    padding: 10px 14px 10px 20px;
-    border-bottom: 1px solid var(--greyEC);
-    cursor: pointer;
-  }
-  .dropdownItem:hover {
-    background-color: var(--greyD9);
-  }
-
-  .dropdownSpan {
-    margin-right: 6px;
+  .dropdownWrapper {
+    position: absolute;
+    right: 0;
   }
 
   .dropdownClose {
+    width: 100%;
     padding: 10px 0;
     background-color: var(--greyD9);
     text-align: center;
