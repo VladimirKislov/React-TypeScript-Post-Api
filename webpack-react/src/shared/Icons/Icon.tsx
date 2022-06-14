@@ -7,6 +7,7 @@ import { HiddenIcon } from "./HiddenIcon";
 import { MenuIcon } from "./MenuIcon";
 import { SaveIcon } from "./SaveIcon";
 import { ShareIcon } from "./ShareIcon";
+import { IconAnon } from "./IconAnon";
 
 export enum EIcons {
     comment = 'comment',
@@ -23,7 +24,7 @@ interface IIconProps {
     As?: 'div' | 'span';
     children?: React.ReactNode;
     name: EIcons,
-    size: TSizes;
+    size?: TSizes;
     mobileSize?: TSizes;
     tabletSize?: TSizes;
     desktopSize?: TSizes;
@@ -49,6 +50,9 @@ export function Icons({As = 'span', children, name, size, mobileSize, tabletSize
             break;
         case EIcons.share:
             children = <ShareIcon />;
+            break;
+        case EIcons.share:
+            children = <IconAnon />;
             break;
     }
 
