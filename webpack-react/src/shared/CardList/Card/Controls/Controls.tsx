@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styles from './controls.scss';
 
-export function Controls() {
+interface IPropsControls {
+  like?: number
+}
 
-  const [count, setCount] = React.useState(234);
+export function Controls({ like }: IPropsControls) {
+
+  const [count, setCount] = React.useState( like || 234 );
 
   function upCount() {
     setCount(prevCount => prevCount + 1);

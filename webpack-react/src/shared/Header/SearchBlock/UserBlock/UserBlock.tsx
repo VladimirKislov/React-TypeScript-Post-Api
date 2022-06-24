@@ -7,7 +7,7 @@ interface IUserBlockProps {
   username?: string
 }
 
-export function UserBlock({ avatarSrc, username}: IUserBlockProps) {
+export function UserBlock({ avatarSrc, username }: IUserBlockProps) {
   return (
     <a
       href={'https://www.reddit.com/api/v1/authorize?client_id=LTCW2f7TVj4zTVCfmNFpoA&response_type=code&state=random_string&redirect_uri=http://localhost:3000/auth&scope=read submit identity'}
