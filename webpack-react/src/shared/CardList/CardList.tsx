@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Card } from './Card';
 import styles from './cardlist.scss';
 import { PostsContext } from '../../context/PostsContext';

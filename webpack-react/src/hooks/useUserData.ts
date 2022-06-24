@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { tokenContext } from '../context/TokenContext';
+import { tokenContext } from '../context/tokenContext';
+
 
 interface IUserData {
     name?: string;
@@ -12,6 +13,7 @@ export function useUserData() {
     const token = useContext(tokenContext)
 
     useEffect(() => {
+        if (token === '') return;
         axios.get(
             'https://oauth.reddit.com/api/v1/me',
             {

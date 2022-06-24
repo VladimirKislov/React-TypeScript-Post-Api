@@ -5,6 +5,7 @@ export function usePostsData(token: string) {
   const [postData, setPostData] = useState()
 
   useEffect(() => {
+    if (token === '') return;
     axios.get(
       'https://oauth.reddit.com/best',
       {

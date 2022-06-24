@@ -9,11 +9,19 @@ interface IPropsTextContent {
 }
 
 export function TextContent({ author, date, title, avatar }: IPropsTextContent) {
+  function viewAvatar() {
+    if (avatar === undefined || (!avatar.endsWith('.jpg') && !avatar.endsWith('.jpeg') && !avatar.endsWith('.gif') && !avatar.endsWith('.png'))) {
+      return "http://spovv.com/file/2020/10/Group-47-1.png";
+    } else {
+      return avatar;
+    }
+  }
+
   return (
     <div className={styles.textContent}>
       <div className={styles.metaData}>
         <div className={styles.userLink}>
-          <img src={ (avatar !== undefined) ? `${avatar}` : "http://spovv.com/file/2020/10/Group-47-1.png" } alt="avatar" className={styles.avatar} />
+          <img src={ viewAvatar() } alt="avatar" className={styles.avatar} />
           <a href="#" className={styles.username}>{ author || 'Дмитрий Гришин' }</a>
         </div>
         <span className={styles.createdAt}>

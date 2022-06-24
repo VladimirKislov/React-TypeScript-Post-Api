@@ -6,7 +6,7 @@ import { Header } from './shared/Header/Header';
 import { Content } from './shared/Content/Content';
 import { CardList } from './shared/CardList';
 import { useToken } from './hooks/useToken';
-import { tokenContext } from './context/TokenContext';
+import { tokenContext } from './context/tokenContext';
 import { UserContextProvider } from './context/userContext';
 import { PostsContext } from './context/PostsContext';
 import { usePostsData } from './hooks/usePostsData';
@@ -16,7 +16,7 @@ function AppComponent() {
     const postData = usePostsData(token)
     
     return (
-        <tokenContext.Provider value={token}>
+        <tokenContext.Provider value={token === '' || token === undefined ? '' : token}>
             <UserContextProvider>
                 <PostsContext.Provider value={[postData]}>
                     <Layout>
