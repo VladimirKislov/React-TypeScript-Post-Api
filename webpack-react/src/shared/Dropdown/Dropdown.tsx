@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './dropdown.scss';
 
 interface IDropdownProps {
@@ -9,17 +9,17 @@ interface IDropdownProps {
   onClose?: () => void;
 }
 
-const NOOP = () => {};
+const NOOP = () => { };
 
-export function Dropdown({button, children, isOpen, onOpen = NOOP, onClose = NOOP}: IDropdownProps) {
+export function Dropdown({ button, children, isOpen, onOpen = NOOP, onClose = NOOP }: IDropdownProps) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(isOpen);
 
-  const [isDropdownOpen, setIsDropdownOpen] = React.useState(isOpen);
-
-  React.useEffect(() => {
+  useEffect(() => {
     setIsDropdownOpen(isOpen);
   }, [isOpen])
 
-  React.useEffect(() => {
+  useEffect(() => {
     isDropdownOpen ? onOpen() : onClose();
   }, [isDropdownOpen])
 
@@ -31,11 +31,11 @@ export function Dropdown({button, children, isOpen, onOpen = NOOP, onClose = NOO
 
   return (
     <div className={styles.container}>
-      <div onClick={handleOpen}> { button } </div>
+      <div onClick={handleOpen} ref={ref}> {button} </div>
       {isDropdownOpen && (
         <div className={styles.listContainer}>
           <div className={styles.list} onClick={() => setIsDropdownOpen(false)}>
-            { children }
+            {children}
           </div>
         </div>
       )}

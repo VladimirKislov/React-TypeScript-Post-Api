@@ -13,6 +13,8 @@ export const indexTemplate = (content, token) => `
 </head>
 <body>
     <div id="root">${content}</div>
+    <div id="modal"></div>
+    <div id="dropdown"></div>
 </body>
 </html>
 `;

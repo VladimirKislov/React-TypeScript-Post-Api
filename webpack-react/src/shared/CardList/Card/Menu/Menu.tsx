@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Dropdown } from '../../../Dropdown';
 import styles from './menu.scss';
 import { MenuItemsList } from './MenuItemsList';
 import { EIcons, Icons } from '../../../Icons/Icon';
-
+import ReactDOM from 'react-dom';
 
 export function Menu() {
-  return (
+
+  const dropdown = document.querySelector('#dropdown');
+  if (!dropdown) return null
+
+  return ReactDOM.createPortal((
     <div className={styles.menu}>
       <Dropdown button={
         <button className={styles.menuButton}>
@@ -18,6 +22,6 @@ export function Menu() {
           <button className={styles.dropdownClose}>Закрыть</button>
         </div>
       </Dropdown>
-    </div>
+    </div>), dropdown
   );
 }

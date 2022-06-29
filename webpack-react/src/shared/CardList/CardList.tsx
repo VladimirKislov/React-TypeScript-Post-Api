@@ -18,7 +18,7 @@ export function CardList() {
             title={item.data.title}
             avatar={item.data.thumbnail}
             author={item.data.author}
-            date={item.data.wls}
+            date={item.data.created}
             like={item.data.ups}
           />
         ))
