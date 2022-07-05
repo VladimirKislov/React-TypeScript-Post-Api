@@ -1,44 +1,43 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import styles from './dropdown.scss';
 
 interface IDropdownProps {
-  button: React.ReactNode;
-  children: React.ReactNode;
-  isOpen?: boolean;
-  onOpen?: () => void;
+  children?: React.ReactNode;
   onClose?: () => void;
+  coordinate?: number;
 }
 
 const NOOP = () => { };
 
-export function Dropdown({ button, children, isOpen, onOpen = NOOP, onClose = NOOP }: IDropdownProps) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(isOpen);
+export function Dropdown({ children, onClose = NOOP, coordinate }: IDropdownProps) {
+  if (typeof window !== 'undefined') {
+    const dropdown = document.querySelector('#dropdown');
+    if (!dropdown) return null
 
-  useEffect(() => {
-    setIsDropdownOpen(isOpen);
-  }, [isOpen])
+    const ref = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    isDropdownOpen ? onOpen() : onClose();
-  }, [isDropdownOpen])
+    useEffect(() => {
+      function handelClick(event: MouseEvent) {
+        if (event.target instanceof Node && !ref.current?.contains(event.target)) {
+          onClose?.()
+        }
+      }
 
-  const handleOpen = () => {
-    if (isOpen === undefined) {
-      setIsDropdownOpen(!isDropdownOpen)
-    }
-  }
+      document.addEventListener('click', handelClick)
+      return () => {
+        document.removeEventListener('click', handelClick)
+      }
+    }, [])
 
-  return (
-    <div className={styles.container}>
-      <div onClick={handleOpen} ref={ref}> {button} </div>
-      {isDropdownOpen && (
+    return ReactDOM.createPortal((
+      <div className={styles.container} ref={ref} style={{ top: coordinate }} >
         <div className={styles.listContainer}>
-          <div className={styles.list} onClick={() => setIsDropdownOpen(false)}>
+          <div className={styles.list}>
             {children}
           </div>
         </div>
-      )}
-    </div>
-  );
+      </div>), dropdown
+    );
+  } else return <></>
 }

@@ -16,6 +16,7 @@ export enum EIcons {
     menu = 'menu',
     save = 'save',
     share = 'share',
+    anon = 'anon'
 }
 
 type TSizes =  18 | 16 | 14 | 12 | 10;
@@ -51,7 +52,7 @@ export function Icons({As = 'span', children, name, size, mobileSize, tabletSize
         case EIcons.share:
             children = <ShareIcon />;
             break;
-        case EIcons.share:
+        case EIcons.anon:
             children = <IconAnon />;
             break;
     }

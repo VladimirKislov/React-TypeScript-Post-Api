@@ -11,10 +11,12 @@ interface IPropsCard {
   avatar?: string,
   author?: string,
   date?: string,
-  like?: number
+  like?: number,
+  subreddit?: string,
+  postId?: string,
 }
 
-export function Card({ image, title, avatar, author, date, like}: IPropsCard) {
+export function Card({ image, title, avatar, author, date, like, subreddit, postId }: IPropsCard) {
   return (
     <li className={styles.card}>
       <TextContent
@@ -22,6 +24,9 @@ export function Card({ image, title, avatar, author, date, like}: IPropsCard) {
         author={author}
         date={date}
         avatar={avatar}
+        subreddit={subreddit}
+        postId={postId}
+        image={image}
       />
       <Preview image={image} />
       <Controls like={like} />

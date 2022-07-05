@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
+import { useCommentUsers } from '../../../../hooks/useCommentUsers';
 import { Post } from '../../../Post';
 import styles from './textcontent.scss';
 
@@ -7,10 +8,15 @@ interface IPropsTextContent {
   date?: string,
   title?: string,
   avatar?: string,
+  image?: any,
+  subreddit?: string,
+  postId?: string,
 }
 
-export function TextContent({ author, date, title, avatar }: IPropsTextContent) {
+export function TextContent({ author, date, title, avatar, image, subreddit, postId }: IPropsTextContent) {
   const [isModalOpened, setIsModalOpened] = useState(false)
+
+  const data = useCommentUsers({subreddit, postId})
 
   function viewAvatar() {
     if (avatar === undefined || (!avatar.endsWith('.jpg') && !avatar.endsWith('.jpeg') && !avatar.endsWith('.gif') && !avatar.endsWith('.png'))) {
@@ -51,7 +57,12 @@ export function TextContent({ author, date, title, avatar }: IPropsTextContent) 
         <a href="#" className={styles.postLink} onClick={() => { setIsModalOpened(true) }}>{title || 'Следует отметить, что новая модель организационной деятельности...'}</a>
       </h2>
       {isModalOpened && (
-        <Post onClose={() => { setIsModalOpened(false) }} />
+        <Post 
+          onClose={() => { setIsModalOpened(false) }}
+          title={title}
+          image={image}
+          data={data}
+        />
       )}
     </div>
   );

@@ -35,8 +35,13 @@ const list = [
   },
 ].map(generateId);
 
-export function MenuItemsList() {
+interface IPropsMenuItemList {
+  onClose: () => void;
+}
+
+export function MenuItemsList({ onClose }: IPropsMenuItemList) {
   const handleItemClick = (id: string) => {
+    onClose?.()
     console.log(id);
   }
 

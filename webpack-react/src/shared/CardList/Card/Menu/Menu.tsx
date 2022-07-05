@@ -1,27 +1,37 @@
-import React, { useContext } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Dropdown } from '../../../Dropdown';
 import styles from './menu.scss';
 import { MenuItemsList } from './MenuItemsList';
 import { EIcons, Icons } from '../../../Icons/Icon';
-import ReactDOM from 'react-dom';
 
 export function Menu() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [coordinate, setCoordinate] = useState()
+  const ref = useRef(null)
+  
+  useEffect(() => {
+    function handleClick(element: any) {
+      setCoordinate(element.target.getBoundingClientRect().bottom + window.scrollY)
+    }
 
-  const dropdown = document.querySelector('#dropdown');
-  if (!dropdown) return null
+    document.addEventListener('click', (element) => {
+      return handleClick(element);
+    })
+  }, [])
 
-  return ReactDOM.createPortal((
+  return (
     <div className={styles.menu}>
-      <Dropdown button={
-        <button className={styles.menuButton}>
-          <Icons name={EIcons.menu} size={16} mobileSize={12} />
-        </button>
-      }>
-        <div className={styles.dropdownWrapper}>
-          <MenuItemsList />
-          <button className={styles.dropdownClose}>Закрыть</button>
-        </div>
-      </Dropdown>
-    </div>), dropdown
+      <button className={styles.menuButton} onClick={() => { setIsDropdownOpen(true) }} ref={ref}>
+        <Icons name={EIcons.menu} size={16} mobileSize={12} />
+      </button>
+        {isDropdownOpen &&
+          <Dropdown coordinate={coordinate} onClose={() => { setIsDropdownOpen(false) }} >
+            <div className={styles.dropdownWrapper}>
+              <MenuItemsList onClose={() => { setIsDropdownOpen(false) }} />
+              <button onClick={() => { setIsDropdownOpen(false) }} className={styles.dropdownClose}>Закрыть</button>
+            </div>
+          </Dropdown>
+        }
+    </div>
   );
 }

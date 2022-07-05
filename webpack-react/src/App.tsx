@@ -16,9 +16,8 @@ function AppComponent() {
     const [commentValue, setCommentValue] = useState('')
     const [token] = useToken()
     const postData = usePostsData(token)
-
     const CommentProvider = CommentContext.Provider;
-
+    
     return (
         <tokenContext.Provider value={token === '' || token === undefined ? '' : token}>
             <UserContextProvider>
@@ -27,12 +26,12 @@ function AppComponent() {
                         value: commentValue,
                         onChange: setCommentValue,
                     }}>
-                        <Layout>
-                            <Header />
-                            <Content>
-                                <CardList />
-                            </Content>
-                        </Layout>
+                            <Layout>
+                                <Header />
+                                <Content>
+                                    <CardList />
+                                </Content>
+                            </Layout>
                     </CommentProvider>
                 </PostsContext.Provider>
             </UserContextProvider>

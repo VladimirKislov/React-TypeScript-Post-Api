@@ -20,6 +20,8 @@ export function CardList() {
             author={item.data.author}
             date={item.data.created}
             like={item.data.ups}
+            subreddit={item.data.subreddit_name_prefixed}
+            postId={item.data.id}
           />
         ))
       }
