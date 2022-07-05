@@ -40,7 +40,7 @@ export function ReplyComment({ onClose, author }: IPropsReplayComment) {
     <div className={styles.wrapperForm} ref={ref} onClick={e => e.stopPropagation()}>
       <div>Ответить: <span className={styles.author}>{ author }</span></div>
       <form className={styles.form} onSubmit={ handelSubmit } >
-        <textarea className={styles.input} value={value} onChange={ handleChange } ref={inputRef => inputRef?.focus()} ></textarea>
+        <textarea className={styles.input} value={value} onChange={ handleChange } ref={ inputRef => inputRef?.focus() } ></textarea>
         <button type='submit' className={styles.button}>Коментировать</button>
       </form>
     </div>), node

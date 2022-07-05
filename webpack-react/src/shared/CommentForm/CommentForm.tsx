@@ -1,21 +1,18 @@
-import React, { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useContext, useRef, useState } from 'react';
 import { CommentContext } from '../../context/CommentContext';
 import styles from './commentform.scss';
 
 export function CommentForm() {
-  const { value, onChange } = useContext(CommentContext)
-
-  function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    onChange(event.target.value)
-  }
+  const ref = useRef<HTMLTextAreaElement>(null)
   
   function handelSubmit(event: FormEvent) {
     event.preventDefault()
+    console.log(ref.current?.value)
   }
 
   return (
     <form className={styles.form} onSubmit={ handelSubmit }>
-      <textarea className={styles.input} value={value} onChange={ handleChange }></textarea>
+      <textarea className={styles.input} ref={ref} ></textarea>
       <button type='submit' className={styles.button}>Коментировать</button>
     </form>
   );
