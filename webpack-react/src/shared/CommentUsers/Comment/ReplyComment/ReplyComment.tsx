@@ -9,6 +9,8 @@ interface IPropsReplayComment {
 
 export function ReplyComment({ onClose, author }: IPropsReplayComment) {
   const [value, setValue] = useState(author)
+  const ref = useRef<HTMLDivElement>(null)
+  const inputRef = useRef(null)
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     setValue(event.target.value)
@@ -17,8 +19,6 @@ export function ReplyComment({ onClose, author }: IPropsReplayComment) {
   function handelSubmit(event: FormEvent) {
     event.preventDefault()
   }
-
-  const ref = useRef<HTMLDivElement>(null)
   
   useEffect(() => {
     function handelClick(event: MouseEvent) {
@@ -40,7 +40,7 @@ export function ReplyComment({ onClose, author }: IPropsReplayComment) {
     <div className={styles.wrapperForm} ref={ref} onClick={e => e.stopPropagation()}>
       <div>Ответить: <span className={styles.author}>{ author }</span></div>
       <form className={styles.form} onSubmit={ handelSubmit } >
-        <textarea className={styles.input} value={value} onChange={ handleChange } ></textarea>
+        <textarea className={styles.input} value={value} onChange={ handleChange } ref={inputRef => inputRef?.focus()} ></textarea>
         <button type='submit' className={styles.button}>Коментировать</button>
       </form>
     </div>), node
