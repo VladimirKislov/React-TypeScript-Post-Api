@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, updatePosts } from "../store";
 
-export function usePostsData(token: string) {
-  const [postData, setPostData] = useState()
+export function usePostsData() {
+  const dispatch = useDispatch()
+  const token = useSelector<RootState, string>(state => state.token)
 
   useEffect(() => {
     if (token === '') return;
@@ -14,11 +17,9 @@ export function usePostsData(token: string) {
     )
       .then((resp) => {
         const posts = resp.data.data.children;
-        setPostData(posts)
+        dispatch(updatePosts(posts))
       })
       .catch(console.log)
 
   }, [token])
-
-  return [postData]
 }

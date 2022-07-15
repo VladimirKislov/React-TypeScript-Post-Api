@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { tokenContext } from '../context/tokenContext';
 import { useSelector } from 'react-redux';
-import { RootState } from '../setToken';
+import { RootState } from '../store';
 
 
 interface IUserData {

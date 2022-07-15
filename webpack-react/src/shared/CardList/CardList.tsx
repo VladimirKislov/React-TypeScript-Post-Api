@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Card } from './Card';
 import styles from './cardlist.scss';
-import { PostsContext } from '../../context/PostsContext';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 export function CardList() {
-  const postData = useContext<any>(PostsContext)
-  const posts = postData[0][0]
+  const posts = useSelector<RootState, Array<any>>(state => state.postsData)
 
   return (
     <ul className={styles.cardList}>
-      {posts === undefined
+      {posts.length <= 0
         ? <Card />
         : posts.map((item: any) => (
           <Card
