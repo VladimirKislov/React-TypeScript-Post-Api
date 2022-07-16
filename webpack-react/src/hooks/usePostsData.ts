@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, updatePosts } from "../store";
+import { RootState, updatePosts } from "../store/store";
 
 export function usePostsData() {
   const dispatch = useDispatch()
-  const token = useSelector<RootState, string>(state => state.token)
+  const token = useSelector<RootState, string>(state => state.meToken.token)
 
   useEffect(() => {
     if (token === '') return;

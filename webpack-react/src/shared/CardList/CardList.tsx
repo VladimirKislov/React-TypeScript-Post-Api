@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from './Card';
 import styles from './cardlist.scss';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { RootState } from '../../store/store';
 
 export function CardList() {
   const posts = useSelector<RootState, Array<any>>(state => state.postsData)

@@ -7,13 +7,13 @@ import { Content } from './shared/Content/Content';
 import { CardList } from './shared/CardList';
 import { useToken } from './hooks/useToken';
 import { usePostsData } from './hooks/usePostsData';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { tokenReducer } from './store';
+import { tokenReducer } from './store/store';
+import thunk from 'redux-thunk';
 
-const store = createStore(tokenReducer, composeWithDevTools())
-
+const store = createStore(tokenReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 function AppComponent() {
     useToken()

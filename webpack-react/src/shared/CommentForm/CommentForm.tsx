@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, updateComment } from '../../store';
+import { RootState, updateComment } from '../../store/store';
 import styles from './commentform.scss';
 
 export function CommentForm() {
