@@ -16,3 +16,13 @@
     background-color: var(--orange);
     color: var(--white);
 }
+
+.error {
+    padding: 5px;
+    color: var(--orange);
+}
+
+.wrapperError {
+    width: 100%;
+    display: flex;
+}

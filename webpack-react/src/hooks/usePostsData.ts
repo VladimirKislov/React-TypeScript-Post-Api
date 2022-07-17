@@ -5,7 +5,7 @@ import { RootState, updatePosts } from "../store/store";
 
 export function usePostsData() {
   const dispatch = useDispatch()
-  const token = useSelector<RootState, string>(state => state.meToken.token)
+  const token = useSelector<RootState, string>(state => state.token.token)
 
   useEffect(() => {
     if (token === '') return;

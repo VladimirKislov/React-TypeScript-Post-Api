@@ -12,12 +12,14 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { tokenReducer } from './store/store';
 import thunk from 'redux-thunk';
+import { useUserData } from './hooks/useUserData';
 
 const store = createStore(tokenReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 function AppComponent() {
     useToken()
     usePostsData()
+    useUserData()
     return (
         <Layout>
             <Header />
