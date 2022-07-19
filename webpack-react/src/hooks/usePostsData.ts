@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, updatePosts } from "../store/store";
+import { RootState } from "../store/store";
+import { PostRequestAsync } from "../store/post/postAction";
 
 export function usePostsData() {
   const dispatch = useDispatch()
@@ -9,17 +9,6 @@ export function usePostsData() {
 
   useEffect(() => {
     if (token === '') return;
-    axios.get(
-      'https://oauth.reddit.com/best',
-      {
-        headers: { Authorization: `bearer ${token}` }
-      }
-    )
-      .then((resp) => {
-        const posts = resp.data.data.children;
-        dispatch(updatePosts(posts))
-      })
-      .catch(console.log)
-
+    dispatch(PostRequestAsync())
   }, [token])
 }

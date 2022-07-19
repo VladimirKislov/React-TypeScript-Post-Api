@@ -18,15 +18,19 @@ export function CommentForm() {
     dispatch(updateComment(event.target.value))
   }
 
-  const userCommentValidation = yup.object().shape({
-    textarea: yup.string().min(4, 'Должно быть больше 3-х символов!').required('Обязательное поле!'),
-  })
-
   return (
     <div>
       <Formik
         initialValues={{ textarea: "" }}
-        validationSchema={userCommentValidation}
+        validate={(values) => {
+          const errors: any = {};
+          if (value.length > 0 && value.length <= 3) {
+            errors.textarea = 'Должно быть больше 3-х символов!';
+          } else if (value.length === 0) {
+            errors.textarea = 'Поле не должно быть Пустое!';
+          }
+          return errors;
+        }}
         onSubmit={(values) => { console.log(values) }}
       >
         {({ values, errors, touched, handleBlur, isSubmitting, }) => (
