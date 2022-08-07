@@ -6,7 +6,6 @@ import { Header } from './shared/Header/Header';
 import { Content } from './shared/Content/Content';
 import { CardList } from './shared/CardList';
 import { useToken } from './hooks/useToken';
-import { usePostsData } from './hooks/usePostsData';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -18,7 +17,6 @@ const store = createStore(tokenReducer, composeWithDevTools(applyMiddleware(thun
 
 function AppComponent() {
     useToken()
-    usePostsData()
     useUserData()
     return (
         <Layout>

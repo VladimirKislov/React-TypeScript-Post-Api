@@ -25,6 +25,7 @@ export type RootState = {
     token: TokenState;
     me: MeState;
     post: PostState;
+    after: string;
 }
 
 const initialState: RootState = {
@@ -45,8 +46,8 @@ const initialState: RootState = {
         loading: false,
         error: '',
         post: [],
-        // after: '',
     },
+    after: '',
 }
 
 const UPDATE_COMMENT = 'UPDATE_COMMENT';
@@ -71,6 +72,16 @@ export type UpdatePostsAction = {
     posts: [],
 }
 
+const DATA_AFTER = 'DATA_AFTER';
+export const dataAfter: ActionCreator<AnyAction> = (after) => ({
+    type: DATA_AFTER,
+    after,
+})
+export type DateAfterAction = {
+    type: typeof DATA_AFTER,
+    after: string,
+}
+
 type Action = TokenRequestSuccessAction
     | UpdateCommentAction
     | UpdatePostsAction
@@ -79,7 +90,8 @@ type Action = TokenRequestSuccessAction
     | MeRequestErrorAction
     | PostRequestAction
     | PostRequestSuccessAction
-    | PostRequestErrorAction;
+    | PostRequestErrorAction
+    | DateAfterAction;
 
 export const tokenReducer: Reducer<RootState, Action> = (state = initialState, action) => {
     switch(action.type) {
@@ -111,6 +123,11 @@ export const tokenReducer: Reducer<RootState, Action> = (state = initialState, a
             return {
                 ...state,
                 post: PostReducer(state.post, action)
+            }
+        case DATA_AFTER:
+            return {
+                ...state,
+                after: action.after
             }
         default:
             return state;

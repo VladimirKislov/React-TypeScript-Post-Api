@@ -11,7 +11,6 @@ export function CommentForm() {
 
   function handleSubmitDispatch(event: FormEvent) {
     event.preventDefault()
-    console.log(value)
   }
 
   function handleChangeDispatch(event: ChangeEvent<HTMLTextAreaElement>) {
