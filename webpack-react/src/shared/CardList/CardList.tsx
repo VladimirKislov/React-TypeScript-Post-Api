@@ -24,27 +24,27 @@ export function CardList() {
     if (posts.length === 0) return
     setNextAfter(after)
     setData(prevChildren => prevChildren.concat(...posts))
-  }, [posts])
+  }, [after])
 
   function handleClick() {
-    dispatch(PostRequestAsync(nextAfter))
     setCount(prevCount => prevCount + 1)
+    dispatch(PostRequestAsync(nextAfter))
   }
 
   useEffect(() => {
     if (token === '') return
 
-    function load() {
-      dispatch(PostRequestAsync(nextAfter))
+    function load(nextPage: string) {
+      setCount(prevCount => prevCount + 1)
+      dispatch(PostRequestAsync(nextPage))
     }
 
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        load()
-        setCount(prevCount => prevCount + 1)
+        load(nextAfter)
       }
     }, {
-      threshold: 0.5,
+      threshold: 1.0,
     })
 
     if (bottomOfList.current) observer.observe(bottomOfList.current)
@@ -52,7 +52,7 @@ export function CardList() {
     return () => {
       if (bottomOfList.current) observer.unobserve(bottomOfList.current)
     }
-  }, [bottomOfList.current, nextAfter])
+  }, [nextAfter])
 
   return (
     <ul className={styles.cardList}>

@@ -38,7 +38,7 @@ export const PostRequestAsync = (afters?: string): ThunkAction<void, RootState, 
     {
       headers: { Authorization: `bearer ${getState().token.token}` },
       params: {
-        limit: 5,
+        limit: 15,
         after: afters,
       }
     }

@@ -3,6 +3,7 @@ import styles from './post.scss';
 import ReactDOM from 'react-dom';
 import { CommentForm } from '../CommentForm';
 import { CommentUsers } from '../CommentUsers';
+import { useHistory } from 'react-router-dom';
 
 interface IPropsPost {
   onClose?: () => void,
@@ -13,11 +14,13 @@ interface IPropsPost {
 
 export function Post({ onClose, data, title, image }: IPropsPost) {
   const ref = useRef<HTMLDivElement>(null)
+  const history = useHistory()
   
   useEffect(() => {
     function handelClick(event: MouseEvent) {
       if (event.target instanceof Node && !ref.current?.contains(event.target)) {
-        onClose?.()
+        // onClose?.()
+        history.push('/posts');
       }
     }
 

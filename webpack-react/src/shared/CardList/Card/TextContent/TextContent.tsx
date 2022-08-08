@@ -1,5 +1,7 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
+import { Link, Redirect, Route } from 'react-router-dom';
 import { useCommentUsers } from '../../../../hooks/useCommentUsers';
+import { NotFound } from '../../../NotFound/NotFound';
 import { Post } from '../../../Post';
 import styles from './textcontent.scss';
 
@@ -16,7 +18,7 @@ interface IPropsTextContent {
 export function TextContent({ author, date, title, avatar, image, subreddit, postId }: IPropsTextContent) {
   const [isModalOpened, setIsModalOpened] = useState(false)
 
-  const data = useCommentUsers({subreddit, postId})
+  const data = useCommentUsers({ subreddit, postId })
 
   function viewAvatar() {
     if (avatar === undefined || (!avatar.endsWith('.jpg') && !avatar.endsWith('.jpeg') && !avatar.endsWith('.gif') && !avatar.endsWith('.png'))) {
@@ -41,29 +43,32 @@ export function TextContent({ author, date, title, avatar, image, subreddit, pos
       return `${setDate} часов`
     }
   }
-  
+
   return (
     <div className={styles.textContent}>
       <div className={styles.metaData}>
         <div className={styles.userLink}>
-          <img src={ viewAvatar() } alt="avatar" className={styles.avatar} />
-          <a href="#" className={styles.username}>{ author || 'Дмитрий Гришин' }</a>
+          <img src={viewAvatar()} alt="avatar" className={styles.avatar} />
+          <a href="#" className={styles.username}>{author || 'Дмитрий Гришин'}</a>
         </div>
         <span className={styles.createdAt}>
-          <span className={styles.publishedLabel}>опубликовано  { postTime() || "4 часа"} назад</span>
+          <span className={styles.publishedLabel}>опубликовано  {postTime() || "4 часа"} назад</span>
         </span>
       </div>
       <h2 className={styles.title}>
-        <a href="#" className={styles.postLink} onClick={() => { setIsModalOpened(true) }}>{title || 'Следует отметить, что новая модель организационной деятельности...'}</a>
+        <Link to={`posts/${postId}`} className={styles.postLink} onClick={() => { setIsModalOpened(true) }}>{title || 'Следует отметить, что новая модель организационной деятельности...'}</Link>
       </h2>
-      {isModalOpened && (
-        <Post 
-          onClose={() => { setIsModalOpened(false) }}
-          title={title}
-          image={image}
-          data={data}
-        />
-      )}
+
+      <Route path='/posts/:id'>
+        {isModalOpened && (
+          <Post
+            onClose={() => { setIsModalOpened(false) }}
+            title={title}
+            image={image}
+            data={data}
+          />
+        )}
+      </Route>
     </div>
   );
 }
