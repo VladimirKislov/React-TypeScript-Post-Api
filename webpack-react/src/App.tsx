@@ -12,7 +12,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { tokenReducer } from './store/store';
 import thunk from 'redux-thunk';
 import { useUserData } from './hooks/useUserData';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { NotFound } from './shared/NotFound';
+import { Post } from './shared/Post';
+import { TextContent } from './shared/CardList/Card/TextContent';
 
 const store = createStore(tokenReducer, composeWithDevTools(applyMiddleware(thunk)))
 
@@ -28,15 +31,30 @@ function AppComponent() {
         <div>
             {mounted && (
                 <BrowserRouter>
-                    <Layout>
-                        <Header />
-                        <Content>
-                            <CardList />
-                        </Content>
-                    </Layout>
+                    <Switch>
+                        <Redirect exact from="/" to="/posts" />
+                        <Redirect from="/auth" to="/posts" />
+                        <Route exact path="/">
+                            <Layout>
+                                <Header />
+                                <Content>
+                                    <CardList />
+                                </Content>
+                            </Layout>
+                        </Route>
+                        <Route path="/posts">
+                            <Layout>
+                                <Header />
+                                <Content>
+                                    <CardList />
+                                </Content>
+                            </Layout>
+                        </Route>
+                        <Route path="/posts/:id" />
+                        <Route component={NotFound} />
+                    </Switch>
                 </BrowserRouter>
-            )
-            }
+            )}
         </div >
     )
 }

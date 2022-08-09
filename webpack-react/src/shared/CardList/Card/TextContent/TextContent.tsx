@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Link, Redirect, Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import { useCommentUsers } from '../../../../hooks/useCommentUsers';
-import { NotFound } from '../../../NotFound/NotFound';
 import { Post } from '../../../Post';
 import styles from './textcontent.scss';
 
