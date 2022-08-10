@@ -1,0 +1,28 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.input {
+    width: 100%;
+    height: 89px;
+    padding: 10px 20px;
+}
+
+.button {
+    margin: 0;
+    padding: 10px 30px;
+    background-color: var(--orange);
+    color: var(--white);
+}
+
+.error {
+    padding: 5px;
+    color: var(--orange);
+}
+
+.wrapperError {
+    width: 100%;
+    display: flex;
+}
