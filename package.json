@@ -8,9 +8,9 @@
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "dev": "cross-env NODE_ENV=development CLIENT_ID=LTCW2f7TVj4zTVCfmNFpoA SECRET=u1vHnURE0oApchJj-8fM-oDkvzeaEg node ./bin/dev.js",
+    "dev": "cross-env NODE_ENV=development CLIENT_ID=UNY4hFpjUAyDW392pyM04g SECRET=d1Wzwk2GH2_YffMsnVnTrRNXhQLuWA node ./bin/dev.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env CLIENT_ID=UNY4hFpjUAyDW392pyM04g SECRET=d1Wzwk2GH2_YffMsnVnTrRNXhQLuWA node ./dist/server/server.js"
+    "start": "cross-env CLIENT_ID=LTCW2f7TVj4zTVCfmNFpoA SECRET=u1vHnURE0oApchJj-8fM-oDkvzeaEg node ./dist/server/server.js"
   },
   "author": "Vladimir",
   "license": "ISC",
