@@ -14,8 +14,6 @@ import thunk from 'redux-thunk';
 import { useUserData } from './hooks/useUserData';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { NotFound } from './shared/NotFound';
-import { Post } from './shared/Post';
-import { TextContent } from './shared/CardList/Card/TextContent';
 
 const store = createStore(tokenReducer, composeWithDevTools(applyMiddleware(thunk)))
 

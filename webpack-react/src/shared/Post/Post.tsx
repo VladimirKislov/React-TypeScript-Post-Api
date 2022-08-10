@@ -19,14 +19,21 @@ export function Post({ onClose, data, title, image }: IPropsPost) {
   useEffect(() => {
     function handelClick(event: MouseEvent) {
       if (event.target instanceof Node && !ref.current?.contains(event.target)) {
-        // onClose?.()
+        onClose?.()
         history.push('/posts');
       }
     }
 
+    function closeModal() {
+      onClose?.()
+    }
+
     document.addEventListener('click', handelClick)
+    window.addEventListener('popstate', closeModal)
+    
     return () => {
       document.removeEventListener('click', handelClick)
+      document.removeEventListener('popstate', closeModal)
     }
   }, [])
 

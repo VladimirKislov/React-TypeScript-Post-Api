@@ -58,7 +58,6 @@ export function TextContent({ author, date, title, avatar, image, subreddit, pos
         <Link to={`posts/${postId}`} className={styles.postLink} onClick={() => { setIsModalOpened(true) }}>{title || 'Следует отметить, что новая модель организационной деятельности...'}</Link>
       </h2>
 
-      <Route path='/posts/:id'>
         {isModalOpened && (
           <Post
             onClose={() => { setIsModalOpened(false) }}
@@ -67,7 +66,6 @@ export function TextContent({ author, date, title, avatar, image, subreddit, pos
             data={data}
           />
         )}
-      </Route>
     </div>
   );
 }
