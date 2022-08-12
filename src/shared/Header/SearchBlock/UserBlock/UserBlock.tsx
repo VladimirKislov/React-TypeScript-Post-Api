@@ -16,7 +16,7 @@ export function UserBlock({ avatarSrc, username, loading }: IUserBlockProps) {
     >
       <div className={styles.avatarBox}>
         { avatarSrc
-          ? <img src={avatarSrc} alt="user_avatar" className={styles.avatarImage} />
+          ? <img crossorigin="anonymous" src={avatarSrc} alt="user_avatar" className={styles.avatarImage} />
           : <IconAnon />
         }
         

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, updateComment } from '../../store/store';
 import styles from './commentform.scss';
 import { Field, Formik } from 'formik';
-import * as yup from 'yup';
 
 export function CommentForm() {
   const value = useSelector<RootState, string>(state => state.commentText)
@@ -54,9 +53,5 @@ export function CommentForm() {
         )}
       </Formik>
     </div>
-    // <form className={styles.form} onSubmit={ handleSubmit }>
-    //   <textarea className={styles.input} value={value} onChange={handleChange} ></textarea>
-    //   <button type='submit' className={styles.button}>Коментировать</button>
-    // </form>
   );
 }
