@@ -14,6 +14,7 @@ app.use('/static', express.static('./dist/client'));
 app.use(compression());
 app.use(helmet({
     contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
 }));
 
 app.get('/auth', (req, res) => {

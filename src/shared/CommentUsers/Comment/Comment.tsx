@@ -49,7 +49,7 @@ export function Comment({ author, date, body, replies }: IPropsComment) {
       </div>
       <div className={styles.descriptionWrapper}>
         <div className={styles.metaData}>
-          <img crossorigin="anonymous" src={ "https://spovv.com/file/2020/10/Group-47-1.png" } alt="avatar" className={styles.avatar} />
+          <img src={ "https://spovv.com/file/2020/10/Group-47-1.png" } alt="avatar" className={styles.avatar} />
           <a href="#" className={styles.username}>{author || 'Дмитрий Гришин'}</a>
           <span className={styles.createdAt}>
             <span className={styles.publishedLabel}>опубликовано  {postTime() || "4 часа"} назад</span>

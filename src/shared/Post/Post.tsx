@@ -46,7 +46,7 @@ export function Post({ onClose, data, title, image }: IPropsPost) {
 
       <div className={styles.content}>
           { image 
-            ? <img crossorigin="anonymous" className={styles.image} src={(image === undefined || (!image.endsWith('.jpg') && !image.endsWith('.jpeg') && !image.endsWith('.gif') && !image.endsWith('.png'))) ? "https://cdn.dribbble.com/userupload/2774008/file/original-315f5378ea4ec89bb81d1ac6c6a4d26e.jpg?filters:format(webp)?filters%3Aformat%28webp%29=&compress=1&resize=1600x1600" : `${image}` } alt="image" /> 
+            ? <img className={styles.image} src={(image === undefined || (!image.endsWith('.jpg') && !image.endsWith('.jpeg') && !image.endsWith('.gif') && !image.endsWith('.png'))) ? "https://cdn.dribbble.com/userupload/2774008/file/original-315f5378ea4ec89bb81d1ac6c6a4d26e.jpg?filters:format(webp)?filters%3Aformat%28webp%29=&compress=1&resize=1600x1600" : `${image}` } alt="image" /> 
             : <div>
                 <p>
                   Есть над чем задуматься: тщательные исследования конкурентов представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть ассоциативно распределены по отраслям. Прежде всего, начало повседневной работы по формированию позиции однозначно фиксирует необходимость кластеризации усилий. Но сторонники тоталитаризма в науке и по сей день остаются уделом либералов, которые жаждут быть превращены в посмешище, хотя само их существование приносит несомненную пользу обществу.
