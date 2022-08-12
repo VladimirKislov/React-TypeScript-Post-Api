@@ -21,7 +21,7 @@ app.get('/auth', (req, res) => {
         'https://www.reddit.com/api/v1/access_token',
         `grant_type=authorization_code&code=${req.query.code}&redirect_uri=https://my-steps-react-app.herokuapp.com/auth`,
         {
-            auth: { username: process.env.CLIENT_ID, password: process.env.SECRET },
+            auth: { username: 'UNY4hFpjUAyDW392pyM04g', password: 'd1Wzwk2GH2_YffMsnVnTrRNXhQLuWA' },
             headers: { 'Content-type': 'application/x-www-form-urlencoded'}
         }
     )
