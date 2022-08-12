@@ -44,11 +44,11 @@ export const MeRequestAsync = (): ThunkAction<void, RootState, unknown, Action<s
             headers: { Authorization: `bearer ${getState().token.token}` }
         }
     )
-        .then((resp) => {
+        .then((resp: { data: any; }) => {
             const userData = resp.data;
             dispatch(MeRequestSuccess({ name: userData.name, iconImg: userData.icon_img.split('?').shift() }))
         })
-        .catch((error) => {
+        .catch((error: { message: any; }) => {
             console.log(error)
             dispatch(MeRequestError(error.message))
         })

@@ -12,7 +12,6 @@ export type PostState = {
     loading: boolean,
     error: string,
     post: Array<any>,
-    // after: string,
 }
 
 type PostAction = PostRequestAction | PostRequestSuccessAction | PostRequestErrorAction;
@@ -35,7 +34,6 @@ export const PostReducer: Reducer<PostState, PostAction> = (state, action) => {
                 ...state,
                 post: action.post,
                 loading: false,
-                // after: action.after,
             }
         default:
             return state;

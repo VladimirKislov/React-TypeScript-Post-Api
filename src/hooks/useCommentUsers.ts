@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import { useToken } from "./useToken";
 
 interface IPropsUsersComment {
   subreddit?: string,
@@ -15,9 +14,9 @@ export function useCommentUsers({ subreddit, postId }: IPropsUsersComment) {
     if (!subreddit) return
 
     axios.get(
-      `http://api.reddit.com/${subreddit}/comments/${postId}`,
+      `https://api.reddit.com/${subreddit}/comments/${postId}`,
     )
-      .then((response) => {
+      .then((response: { data: { data: { children: any; }; }[]; }) => {
         setComment(response.data[1].data.children)
       })
       .catch(console.log)
