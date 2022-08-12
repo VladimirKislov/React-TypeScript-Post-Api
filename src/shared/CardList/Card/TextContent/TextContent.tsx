@@ -21,7 +21,7 @@ export function TextContent({ author, date, title, avatar, image, subreddit, pos
 
   function viewAvatar() {
     if (avatar === undefined || (!avatar.endsWith('.jpg') && !avatar.endsWith('.jpeg') && !avatar.endsWith('.gif') && !avatar.endsWith('.png'))) {
-      return "http://spovv.com/file/2020/10/Group-47-1.png";
+      return "https://spovv.com/file/2020/10/Group-47-1.png";
     } else {
       return avatar;
     }
