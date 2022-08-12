@@ -30,8 +30,6 @@ function AppComponent() {
             {mounted && (
                 <BrowserRouter>
                     <Switch>
-                        <Redirect exact from="/" to="/posts" />
-                        <Redirect from="/auth" to="/posts" />
                         <Route exact path="/">
                             <Layout>
                                 <Header />
