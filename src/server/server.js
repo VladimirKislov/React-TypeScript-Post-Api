@@ -4,7 +4,7 @@ import { App } from '../App';
 import { indexTemplate } from './indexTemplate';
 import axios from 'axios';
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const app =express();
 
