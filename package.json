@@ -41,6 +41,7 @@
     "react-hot-loader": "^4.13.0",
     "react-redux": "^7.2.8",
     "react-router-dom": "^5.3.3",
+    "recoil": "^0.7.5",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",

@@ -14,6 +14,7 @@ import thunk from 'redux-thunk';
 import { useUserData } from './hooks/useUserData';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { NotFound } from './shared/NotFound';
+import { atom, RecoilRoot } from 'recoil';
 
 const store = createStore(tokenReducer, composeWithDevTools(applyMiddleware(thunk)))
 
@@ -58,7 +59,9 @@ function AppComponent() {
 }
 
 export const App = hot(() =>
-    <Provider store={store}>
-        <AppComponent />
-    </Provider>
+    <RecoilRoot>
+        <Provider store={store}>
+            <AppComponent />
+        </Provider>
+    </RecoilRoot>
 );

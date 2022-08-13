@@ -20,9 +20,9 @@ app.use(helmet({
 app.get('/auth', (req, res) => {
     axios.post(
         'https://www.reddit.com/api/v1/access_token',
-        `grant_type=authorization_code&code=${req.query.code}&redirect_uri=https://my-steps-react-app.herokuapp.com/auth`,
+        `grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:3000/auth`,
         {
-            auth: { username: 'UNY4hFpjUAyDW392pyM04g', password: 'd1Wzwk2GH2_YffMsnVnTrRNXhQLuWA' },
+            auth: { username: 'LTCW2f7TVj4zTVCfmNFpoA', password: 'u1vHnURE0oApchJj-8fM-oDkvzeaEg' },
             headers: { 'Content-type': 'application/x-www-form-urlencoded'}
         }
     )
