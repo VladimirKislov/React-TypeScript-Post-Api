@@ -14,9 +14,15 @@ import thunk from 'redux-thunk';
 import { useUserData } from './hooks/useUserData';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { NotFound } from './shared/NotFound';
-import { atom, RecoilRoot } from 'recoil';
+import { StoreProvider, createStore as createEasy, action } from 'easy-peasy';
 
 const store = createStore(tokenReducer, composeWithDevTools(applyMiddleware(thunk)))
+const storeEasy = createEasy({
+    values: 'Your comment should be here and now',
+    add: action<any>((state, payload) => {
+        state.values = payload
+    })
+})
 
 function AppComponent() {
     const [mounted, setMounted] = useState(false);
@@ -27,41 +33,41 @@ function AppComponent() {
     useToken()
     useUserData()
     return (
-        <div>
-            {mounted && (
-                <BrowserRouter>
-                    <Switch>
-                        <Redirect exact from="/" to="/posts" />
-                        <Redirect from="/auth" to="/posts" />
-                        <Route exact path="/">
-                            <Layout>
-                                <Header />
-                                <Content>
-                                    <CardList />
-                                </Content>
-                            </Layout>
-                        </Route>
-                        <Route path="/posts">
-                            <Layout>
-                                <Header />
-                                <Content>
-                                    <CardList />
-                                </Content>
-                            </Layout>
-                        </Route>
-                        <Route path="/posts/:id" />
-                        <Route component={NotFound} />
-                    </Switch>
-                </BrowserRouter>
-            )}
-        </div >
+        <StoreProvider store={storeEasy}>
+            <div>
+                {mounted && (
+                    <BrowserRouter>
+                        <Switch>
+                            <Redirect exact from="/" to="/posts" />
+                            <Redirect from="/auth" to="/posts" />
+                            <Route exact path="/">
+                                <Layout>
+                                    <Header />
+                                    <Content>
+                                        <CardList />
+                                    </Content>
+                                </Layout>
+                            </Route>
+                            <Route path="/posts">
+                                <Layout>
+                                    <Header />
+                                    <Content>
+                                        <CardList />
+                                    </Content>
+                                </Layout>
+                            </Route>
+                            <Route path="/posts/:id" />
+                            <Route component={NotFound} />
+                        </Switch>
+                    </BrowserRouter>
+                )}
+            </div >
+        </StoreProvider>
     )
 }
 
 export const App = hot(() =>
-    <RecoilRoot>
-        <Provider store={store}>
-            <AppComponent />
-        </Provider>
-    </RecoilRoot>
+    <Provider store={store}>
+        <AppComponent />
+    </Provider>
 );

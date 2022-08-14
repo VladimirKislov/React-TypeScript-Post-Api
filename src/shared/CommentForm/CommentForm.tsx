@@ -3,12 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, updateComment } from '../../store/store';
 import styles from './commentform.scss';
 import { Field, Formik } from 'formik';
-import { atom, useRecoilState } from 'recoil';
-
-const textValueState = atom({
-  key: 'key',
-  default: 'Your comment should be here'
-});
+import { useStoreActions, useStoreState } from 'easy-peasy';
 
 export function CommentForm() {
   // const value = useSelector<RootState, string>(state => state.commentText)
@@ -22,16 +17,17 @@ export function CommentForm() {
   //   dispatch(updateComment(event.target.value))
   // }
 
-  const [textValue, setTextValue] = useRecoilState(textValueState);
+  const value = useStoreState<any>((state) => state.values);
+  const add = useStoreActions<any>((actions) => actions.add);
 
   const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setTextValue(event.target.value)
+    add(event.target.value)
   };
 
   return (
     <div>
       <form action="">
-        <textarea className={styles.input} value={textValue} onChange={onChange}></textarea>
+        <textarea className={styles.input} value={value} onChange={onChange}></textarea>
         <button className={styles.button} disabled={true} type='submit'>Коментировать</button>
       </form>
     </div>
