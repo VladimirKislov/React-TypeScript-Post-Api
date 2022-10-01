@@ -10,7 +10,7 @@ export function CardList() {
   const posts = useSelector<RootState, any>(state => state.post.post)
   const after = useSelector<RootState, string>(state => state.after)
   const loading = useSelector<RootState, boolean>(state => state.post.loading)
-  const errorLoading = useSelector<RootState, string>(state => state.post.error)
+  const errorLoading = useSelector<RootState, string>((state: { post: { error: string; }; }) => state.post.error)
   const token = useSelector<RootState, string>(state => state.token.token)
 
   const bottomOfList = useRef<HTMLDivElement>(null)
@@ -58,7 +58,7 @@ export function CardList() {
     <ul className={styles.cardList}>
       {posts.length === 0 && !loading && !errorLoading && (
         <div className={styles.post}>
-          {'Нет ни одного поста'}
+          {'No Posts. Click user icon!!!'}
         </div>
       )}
 
