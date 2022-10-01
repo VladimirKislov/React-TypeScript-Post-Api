@@ -18,20 +18,19 @@ app.use(helmet({
 }));
 
 app.get('/auth', (req, res) => {
-    axios.post(
-        'https://www.reddit.com/api/v1/access_token',
+    axios
+      .post(
+        "https://www.reddit.com/api/v1/access_token",
         `grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:3000/auth`,
         {
-            auth: { username: 'LTCW2f7TVj4zTVCfmNFpoA', password: 'u1vHnURE0oApchJj-8fM-oDkvzeaEg' },
-            headers: { 'Content-type': 'application/x-www-form-urlencoded'}
+          auth: { username: "LTCW2f7TVj4zTVCfmNFpoA", password: "d1Wzwk2GH2_YffMsnVnTrRNXhQLuWA" },
+          headers: { "Content-type": "application/x-www-form-urlencoded" },
         }
-    )
-        .then(({data}) => {
-            res.send(
-                indexTemplate(ReactDom.renderToString(App()), data['access_token']),
-            );
-        })
-        .catch(console.log);
+      )
+      .then(({ data }) => {
+        res.send(indexTemplate(ReactDom.renderToString(App()), data["access_token"]));
+      })
+      .catch(console.log);
 })
 
 app.get('*', (req, res) => {
