@@ -21,7 +21,7 @@ app.get('/auth', (req, res) => {
     axios
       .post(
         "https://www.reddit.com/api/v1/access_token",
-        `grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:3000/auth`,
+        `grant_type=authorization_code&code=${req.query.code}&redirect_uri=https://my-steps-react-app.herokuapp.com/auth`,
         {
           auth: { username: "LTCW2f7TVj4zTVCfmNFpoA", password: "d1Wzwk2GH2_YffMsnVnTrRNXhQLuWA" },
           headers: { "Content-type": "application/x-www-form-urlencoded" },
